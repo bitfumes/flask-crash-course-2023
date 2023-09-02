@@ -1,3 +1,4 @@
+from app import User
 from flask import Blueprint, redirect, render_template, request, url_for
 
 bp = Blueprint("user", __name__)
@@ -9,7 +10,8 @@ def user():
         # store user in db
         return redirect(url_for("user.create"))
     else:
-        return render_template("user/index.html")
+        users = User.query.all()
+        return render_template("user/index.html", users=users)
 
 
 @bp.route("/user/create")
@@ -27,4 +29,5 @@ def user_id(id):
 
 @bp.route("/user/<int:id>")
 def about(id):
+    return render_template("user/show.html", id=id)
     return render_template("user/show.html", id=id)
