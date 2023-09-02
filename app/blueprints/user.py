@@ -21,4 +21,4 @@ def user_id(id):
 
 @bp.route("/user/<int:id>")
 def about(id):
-    return f"<h1>Welcome {id} </h1>"
+    return render_template("user/show.html", id=id)
